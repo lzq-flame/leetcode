@@ -16,26 +16,24 @@ type ListNode struct {
 
 func reverseList(head *ListNode) *ListNode {
 	var pre *ListNode = nil
-	node := head
-	for node != nil {
-		next := node.Next
-		node.Next = pre
-		pre = node
-		node = next
+	for head != nil {
+		next := head.Next
+		head.Next = pre
+		pre = head
+		head = next
 	}
 	return pre
 }
 
-//func reverseList(head *ListNode) *ListNode {
-//	if head == nil||head.Next == nil{
-//		return head
-//	}
-//	newHead := reverseList(head.Next)
-//	fmt.Println("newHead is ",newHead.Val)
-//	head.Next.Next = head
-//	head.Next = nil
-//	return newHead
-//}
+func reverseList1(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	newHead := reverseList1(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+	return newHead
+}
 
 func main() {
 	node1 := &ListNode{
